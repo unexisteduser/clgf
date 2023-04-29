@@ -1,0 +1,156 @@
+<?php
+session_start();
+
+require_once "../../../controllers/report.controller.php";
+require_once "../../../models/report.model.php";
+
+class printAttendance{
+public function getAttendancePrinting(){ 
+
+  $daterange;
+  $date1 = $_COOKIE["pdate1"];
+  $date2 = $_COOKIE["pdate2"];
+  $adult = $_COOKIE["padult"];
+  $hype = $_COOKIE["phype"];
+  $kaya = $_COOKIE["pjkids"];
+  $jkids= $_COOKIE["pkaya"];
+
+  if($date2 != ""){
+    $daterange = "(" . $date1 .") - (". $date2 .")";
+  }else{
+    $daterange = $date1;
+  }
+
+
+  $attendance = (new ControllerReport)-> ctrShowAttendanceReport($date1, $date2, $adult, $hype, $kaya, $jkids);
+
+  require_once('tcpdf_include.php');
+  $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+  $pdf->startPageGroup();
+  $pdf->setPrintHeader(false);
+
+  $pdf->AddPage();
+    $header = <<<EOF
+    <div style="text-align:center; margin-bottom:-50px;"><img src="images/logo_circle.jpg" alt="clgf Logo" style="width:50px;" ></div>
+    <table >
+      <tr>
+        <td style="width:540px;text-align:center;font-size:1.2em;font-weight:bold;">CHIRST THE LIVING GOD FELLOWSHIP - HENARES</td> 
+      </tr>
+
+      <tr>
+      <td style="width:540px;text-align:center;font-size:1em;font-weight:bold;">$daterange</td> 
+    </tr>
+
+      <tr>
+        <td style="width:540px;text-align:center;font-size:10px;">Bacolod City </td> 
+      </tr>  
+
+      <tr>
+       <td></td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+  
+
+      <tr >
+        <td style="width:540px;text-align:center;font-size:1.2em;font-weight:bold;">ATTENDANCE LIST</td> 
+      </tr> 
+      <tr>
+      <td></td>
+    </tr>  
+
+   
+
+      <tr  style="width:25px; padding: 20px;">
+        <td style="width:25px; "></td>
+
+        <td style="border: 1px solid #202020;width: 170px; height:20px; text-align:center; font-size:1em; font-weight: bold;">NAME</td>
+                                                            
+        <td style="border: 1px solid 	#202020;width:80px; height:20px; text-align:center;  font-size:1em; font-weight: bold;">CATEGORY</td>   
+        
+        
+        <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight:bold; background-color:#00d632;"></td>  
+        <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight:bold;"></td> 
+        <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight:bold;"></td>  
+        <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight:bold;"></td>  
+        <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight:bold;"></td>  
+      </tr>                        
+    </table>
+EOF;
+    $pdf->writeHTML($header, false, false, false, false, '');
+    
+
+// ------------------------------------------------------------
+
+
+
+for($i = 0; $i <count($attendance); $i++){
+  //   $fullname = $value["fullname"];
+  //   $category = $value["category"];
+
+  $curdate = $attendance[$i][count($attendance[$i])-2];
+  $curid = $attendance[$i][count($attendance[$i])-1];
+  $curtype = $attendance[$i][count($attendance[$i])-3];
+
+  $curdetails = $curdate. '  -  '. $curid . ' (' .$curtype . ')';
+
+  $headcontent ='
+   <h4>'.$curdetails.'</h4>
+   <table>    
+
+  ';
+
+  for($i2 = 0; $i2 < count($attendance[$i])-3; $i2++){
+
+      $curname = $attendance[$i][$i2][1];
+      $curcat = $attendance[$i][$i2][3];
+
+  
+   
+      $headcontent .= <<<EOF
+          <tr>
+          <td style="width:25px;"></td>
+          <td style="border: 1px solid #666; width:170px; text-align:center; font-size:0.9em; padding:50px;">$curname</td>                                                             
+          <td style="border: 1px solid #666; width: 80px; text-align:center; font-size:0.9em; padding:50px;">$curcat</td>     
+          
+          <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight: bold;"></td>  
+          <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight: bold;"></td>  
+          <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight: bold;"></td>  
+          <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight: bold;"></td>  
+          <td style="border: 1px solid 	#202020; width:48px; height:20px; text-align:center;  font-size:1em; font-weight: bold;"></td> 
+        </tr>                
+
+EOF;
+
+      } 
+
+      $headcontent .= '</table>';
+
+      $pdf->writeHTML($headcontent , false, false, false, false, '');
+    }
+
+  $footer = <<<EOF
+    <table style="border: none;">    
+      <tr>
+        <td></td>
+      </tr>
+      <tr>  
+        <td style="width:505px;text-align:right;font-size:8px;">Generated by</td>
+      </tr> 
+      <tr>  
+        <td style="width:505px;text-align:right;font-size:10px;">JAJAJO ENTERPRISE</td>
+      </tr>                              
+    </table>
+EOF;
+      $pdf->writeHTML($footer, false, false, false, false, '');     
+
+    $pdf->Output('attendance_list.pdf', 'I');
+
+
+   }
+  }  
+
+  $attendanceForm = new printAttendance();
+  $attendanceForm -> getAttendancePrinting();
+?>
