@@ -22,7 +22,7 @@
         </div>
 
 
-        <div class="row justify-content-around align-items-center pt-4"> 
+        <div class="row justify-content-around align-items-center p-3"> 
 
 
             <div class="col-2 form-group pt-1 ">
@@ -49,9 +49,12 @@
     </div>
 </div>
 
-<div class="border border-7 mt-4 px-5 report_preview" >
+<div class="border border-7  mx-auto report_preview" id="tt">
 
    
 </div>
+<div class="pb-3">
 
-<button type="button" class="btn btn-primary btn-rounded px-4" id="btn-print-attendance"><i class="fa fa-save"></i>&nbsp;&nbsp;PRINT</button>
+</div>
+
+<button type="button" class="btn btn-primary btn-rounded px-4 " id="btn-print-attendance"><i class="fa fa-save"></i>&nbsp;&nbsp;PRINT</button>

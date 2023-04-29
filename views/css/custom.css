@@ -13,6 +13,11 @@
 }
 
 
+#tt {
+  position: relative;
+  padding-left: 35% ;
+}
+
 
 .loader {
   width: 1em;
@@ -30,6 +35,9 @@
     font-size: 75px;
   }
 }
+
+
+
 .loader:before, .loader:after {
   content: "";
   top: 0;

@@ -41,7 +41,7 @@ $(function() {
             dataType: "json",
             success: function(answer) {
                 console.log(answer);
-                alert(JSON.stringify(answer));
+                var total_attendee = "";
 
                 $(".report_preview").empty();
                 var html = [];
@@ -52,28 +52,37 @@ $(function() {
                 for(var i = 0; i <answer.length; i++){
                 
                         html.push('<h4 class="py-3">'+  answer[i][ (answer[i].length) -3] + '  -  '+ answer[i][ (answer[i].length) -2]+ '  (' + answer[i][(answer[i].length) -1]+')</h4>');
-                        html.push('<table class="table mx-auto w-auto border border-2">');
+                        html.push('<table class="table mx-auto w-auto border border-5 ">');
                             html.push("<thead class='border border-2'>");
                                 html.push("<tr>");
-                                    html.push("<th class='table_head_left_fixed border border-2'>NAME</th>");
-                                    html.push("<th class='table_head_left_fixed border border-2'>CATEGORY</th>");
+                                    html.push("<th class='table table-bordered  border border-3 justify-content-center p-3'  style='width:50%'>NAME</th>");
+                                    html.push("<th class='table table-bordered  border border-3 justify-content-center p-3' >CATEGORY</th>");
 
                                 html.push("</tr>");
                             html.push("</thead>");
 
                             for(var i2 = 0; i2 <answer[i].length -3; i2++){
-                                html.push('<tr class="border border-2">');
-                                 html.push('<td class="border border-2">'+ answer[i][i2][1]+'</td>')
-                                 html.push('<td class="border border-2">'+ answer[i][i2][3]+'</td>')
+                                html.push('<tr class="border border-3">');
+                                 html.push('<td class="border border-3">'+ answer[i][i2][1]+'</td>')
+                                 html.push('<td class="border border-3">'+ answer[i][i2][3]+'</td>')
                   
                                 html.push('</tr>');
+
+                                
                             }
 
-    
-                          
+                            total_attendee = (answer[i].length) -3;
+                            html.push('<tr class="border border-2">');
+
+                            html.push('<td class="" style=" width:50px;"></td>')
+                            html.push('<td class="border border-2" style=" width:200px;"> TOTAL ATTENDEE:&nbsp&nbsp&nbsp'+ total_attendee+'</td>')
+                
+                            html.push('</tr>');
+                           
+                            html.push("</table>");
+                 
                 }
-                   
-                    html.push("</table>");
+              
                 html.push("</div>");
 
 
@@ -114,8 +123,7 @@ $(function() {
         var pjkids =  $("#check-jkids").is(':checked'); 
         var pkaya =  $("#check-kaya").is(':checked'); 
 
-        alert(pdate1);
-        alert(pdate2);
+   
         
 
     
