@@ -22,7 +22,7 @@ if(isset($_SESSION["name"])){
                 </div>
             </div>  
             <div class="d-flex justify-content-center form_container"style="padding-top:1em;">
-                <form class="loginForm">
+                <form class="loginForm" id="login-Form">
                     <div class="input-group mb-3" style="padding-top:1em;">
                         <div class="input-group-append" >
                             <span class="input-group-text"style="font-size:2em;"><i class="fa fa-user"></i></span>                   

@@ -63,6 +63,9 @@ $(function() {
             required: true,
             minlength: 3
           },
+          access: {
+            required: true,
+          },
           email: {
             required: true,
             email: true
@@ -96,6 +99,9 @@ $(function() {
           terms_agree: "required"
         },
         messages: {
+          access:{
+            required: "Please Select Access Level"
+          },
           name: {
             required: "Please enter a name",
             minlength: "Name must consist of at least 3 characters"

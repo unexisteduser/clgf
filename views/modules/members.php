@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <form role="form" id="members-form" method="POST" autocomplete="nope">
+        <form role="form" id="members-form" method="POST" autocomplete="nope" class="memberForm">
             <div class="card">
                 <div class="card-body">
                             <input type="text" name="trans_type" id="trans_type" value="New" style="display:none;" required>
@@ -22,7 +22,7 @@
 
                                 <div class="col-md-2 form-group">
                                     <label for="txt-cstats" class="form-label">Status</label>
-                                    <select class="form-select" id="txt-cstats" name="txt-cstats" required>
+                                    <select class="form-select" id="txt-cstats" name="cstats" required>
                                             <option value="Regular">Regular</option>
                                             <option value="Irregular">Irregular</option>
                                     </select>
@@ -39,17 +39,17 @@
 
                                     <div class="col-sm-3 form-group pt-3">
                                         <label for="fname" class="form-label">First Name</label>
-                                        <input id="tns-fname" class="form-control" name="name" type="text" placeholder="Enter First Name"  autocomplete="nope" required>
+                                        <input id="tns-fname" class="form-control" name="fname" type="text" placeholder="Enter First Name"  autocomplete="nope" >
                                     </div>
 
                                     <div class="col-sm-3 form-group pt-3">
                                         <label for="tns-mname" class="form-label">Middle Name</label>
-                                        <input id="tns-mname" class="form-control" name="name" type="text" placeholder="Enter Middle Name"  autocomplete="nope"  >
+                                        <input id="tns-mname" class="form-control" name="mname" type="text" placeholder="Enter Middle Name"  autocomplete="nope" >
                                     </div>
 
                                     <div class="col-sm-3 form-group pt-3">
                                         <label for="tns-lname" class="form-label">Last Name</label>
-                                        <input id="tns-lname" class="form-control" name="name" type="text" placeholder="Enter Last Name"  autocomplete="nope" >
+                                        <input id="tns-lname" class="form-control" name="lname" type="text" placeholder="Enter Last Name"  autocomplete="nope" >
                                     </div>
 
                                     <div class="col-sm-1 form-group pt-3">
@@ -65,8 +65,8 @@
 
                                     <div class="col-sm-2 form-group pt-3">
                                             <label for="txt-gender" class="form-label">Gender</label>
-                                            <select class="form-select" id="txt-gender" name="txt-gender">
-                                                <option value="" selected hidden></option>
+                                            <select class="form-select" id="txt-gender" name="gender">
+                                                <option value="" selected hidden></option>  
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
@@ -79,7 +79,7 @@
                                     <div class="col-sm-4 form-group pt-3 ">
                                         <label for="txt-dob" class="form-label">Date of Birth</label>
                                         <div class="input-group flatpickr" id="flatpickr-date">
-                                            <input type="text" class="form-control" name="txt-dob" id="txt-dob" placeholder="Select date" data-input>
+                                            <input type="text" class="form-control" name="dob" id="txt-dob" placeholder="Select date" data-input>
                                             <span class="input-group-text input-group-addon" data-toggle><i data-feather="calendar"></i></span>
                                         </div>  
                                     </div>
@@ -88,7 +88,7 @@
 
                                     <div class="col-sm form-group pt-3">
                                         <label for="txt-civilstats" class="form-label">Status</label>
-                                        <select class="form-select" id="txt-civilstats" name="txt-civilstats">
+                                        <select class="form-select" id="txt-civilstats" name="civilstats">
                                             <option value="" selected hidden></option>
                                             <option value="Single">Single</option>
                                             <option value="Married">Married</option>
@@ -98,7 +98,7 @@
 
                                     <div class="col-sm form-group pt-3">
                                         <label for="txt-category" class="form-label">Category</label>
-                                        <select class="form-select" id="txt-category" name="txt-category" required>
+                                        <select class="form-select" id="txt-category" name="category" >
                                             <option value="" selected hidden></option>
                                             <option value="JKIDS">JKIDS</option>
                                             <option value="HYPE">HYPE</option>
@@ -112,7 +112,7 @@
                                     
                                     <div class="col-sm form-group pt-3">
                                         <label for="txt-branch" class="form-label">Branch</label>
-                                        <select class="form-select" id="txt-branch" name="txt-branch">
+                                        <select class="form-select" id="txt-branch" name="branch">
                                             <option value="HERNARES">HERNARES</option>
                                             <option value="AKLAN">AKLAN</option>
                                             <option value="SILAY">SILAY</option>
@@ -136,17 +136,17 @@
                                    
                                 <div class="col-sm-4 form-group pt-3 " style="margin: right 10em;;">
                                         <label for="tns-email" class="form-label">Email</label>
-                                        <input id="tns-email" class="form-control email" name="tns-email" type="email" placeholder="Enter Email"  autocomplete="nope" >
+                                        <input id="tns-email" class="form-control email" name="email" type="email" placeholder="Enter Email"  autocomplete="nope" >
                                     </div>
 
                                     <div class="col-sm-3 form-group pt-3">
                                         <label for="num-phone" class="form-label">Mobile Number</label>
-                                        <input id="num-phone" class="form-control" name="num-phone" type="text" placeholder="Enter Mobile Number" maxlength="11"  autocomplete="nope" >
+                                        <input id="num-phone" class="form-control" name="phone" type="text" placeholder="Enter Mobile Number" maxlength="11"  autocomplete="nope" >
                                     </div>
 
                                     <div class="col-sm-3 form-group pt-3">
                                         <label for="num-land" class="form-label">Landline Number</label>
-                                        <input id="num-land" class="form-control" name="num-land" type="text" placeholder="Enter Landline Number" maxlength="9"  autocomplete="nope" >
+                                        <input id="num-land" class="form-control" name="land" type="text" placeholder="Enter Landline Number" maxlength="9"  autocomplete="nope" >
                                     </div>
                                 </div>
                             </div>

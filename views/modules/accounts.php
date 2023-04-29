@@ -24,7 +24,7 @@
 
                                     <div class="col-sm-3 form-group pt-3" style="margin-right:20em;">
                                         <label for="username" class="form-label">Username</label>
-                                        <input id="tns-username" class="form-control" name="username" type="text" placeholder="Enter Username"  autocomplete="nope" style="font-size:1em; width:30em;" required>
+                                        <input id="tns-username" class="form-control" name="username" type="text" placeholder="Enter Username"  autocomplete="nope" style="font-size:1em; width:30em;" >
                                     </div>
 
                                    
@@ -32,7 +32,7 @@
 
                                     <div class="col-sm-2 form-group pt-3">
                                             <label for="txt-access" class="form-label">Access Level</label>
-                                            <select class="form-select" id="txt-access" name="txt-access" style="font-size:1em;">
+                                            <select class="form-select" id="txt-access" name="access" style="font-size:1em;" required>
                                                 <option value="" selected hidden></option>
                                                 <option value="user">User</option>
                                                 <option value="admin">Admin</option>

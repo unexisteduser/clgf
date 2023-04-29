@@ -61,8 +61,111 @@ $(function() {
     // SAVE MEMBER
     $("#members-form").submit(function(e) {
         e.preventDefault();
-        addMember();
+        if($(".memberForm").valid()){
+            addMember();
+        }else{
+        }
     });
+
+    //plugin for validating form
+    $(".memberForm").validate({
+        rules: {
+          fname: {
+            required: true,
+            minlength: 1
+          },
+          mname: {
+            required: true,
+            minlength: 3
+          },
+          lname: {
+            required: true,
+            minlength: 3
+          },
+          gender: {
+            required: true,
+          },
+          dob: {
+            required: true,
+          },
+          civilstats: {
+            required: true,
+          },
+          category: {
+            required: true,
+          },
+          branch: {
+            required: true,
+          },
+
+        },
+        messages: {
+          fname: {
+            required: "Please enter a first name",
+            minlength: "Name must consist of at least 2 characters"
+          },
+          mname: {
+            required: "Please enter a middle name",
+          },
+          lname: {
+            required: "Please enter a last name",
+            minlength: "Name must consist of at least 3 characters"
+          },
+          gender: {
+            required: "Please select a gender",
+          },
+          dob: {
+            required: "Please select a birth date",
+          },
+          civilstats: {
+            required: "Please select a civil status",
+          },
+          category: {
+            required: "Please select a category",
+          },
+          branch: {
+            required: "Please select a branch",
+          },
+          username:{
+            required: "Please provide a username",
+            minlength: "Your username must be at least 3 characters long"
+          },
+          confirm_password: {
+            required: "Please confirm your password",
+            minlength: "Your password must be at least 5 characters long",
+            equalTo: "Please enter the same password as above"
+          },
+          terms_agree: "Please agree to terms and conditions"
+        },
+        errorPlacement: function(error, element) {
+          error.addClass( "invalid-feedback" );
+  
+          if (element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+          }
+          else if (element.prop('type') === 'radio' && element.parent('.radio-inline').length) {
+            error.insertAfter(element.parent().parent());
+          }
+          else if (element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+            error.appendTo(element.parent().parent());
+          }
+          else {
+            error.insertAfter(element);
+          }
+        },
+        highlight: function(element, errorClass) {
+          if ($(element).prop('type') != 'checkbox' && $(element).prop('type') != 'radio') {
+            $( element ).addClass( "is-invalid" ).removeClass( "is-valid" );
+          }
+        },
+        unhighlight: function(element, errorClass) {
+          if ($(element).prop('type') != 'checkbox' && $(element).prop('type') != 'radio') {
+            $( element ).addClass( "is-valid" ).removeClass( "is-invalid" );
+          }
+        }
+      });
+
+
 
     function progressbar() {
         var progressBar = document.querySelector('.progress-bar');
